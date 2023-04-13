@@ -30,3 +30,4 @@ List of pending tasks.
 13. SEO > [Liste de liens > ref nat](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=1893195632)
 14. ✅ [Responsive](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=1584040677)
 15. ✅ Maj sommaire
+    1. Liens

@@ -13,22 +13,20 @@ Il n'y aura pas forcément l'ensemble des liens, il s'agit plutôt d'une descrip
 
 ## Sommaire
 
-1. Projet git
-   1. Créer un README.md propre
-   2. Communauté
-2. Optimisations du code
-3. Optimisations du projet
-   1. Images & vidéos
-4. Validateurs +- en ligne
-5. Optimisations côté serveur
-6. Listes dédiées aux technologies
-   1. HTML
-   2. CSS
-   3. Javascript
-   4. PHP
-   5. WordPress
-   6. Docker
-7. Liste de ressources supplémentaires
+- [Checklist de fin de site](#checklist-de-fin-de-site)
+  - [Utilisation recommandée](#utilisation-recommandée)
+  - [Sommaire](#sommaire)
+  - [Projet git](#projet-git)
+    - [Créer un README.md propre](#créer-un-readmemd-propre)
+    - [Communauté](#communauté)
+  - [Optimisations du code](#optimisations-du-code)
+  - [Optimisations du projet](#optimisations-du-projet)
+    - [Images \& vidéos](#images--vidéos)
+  - [Validateurs +- en ligne](#validateurs---en-ligne)
+  - [Optimisations côté serveur](#optimisations-côté-serveur)
+  - [Listes dédiées aux technologies](#listes-dédiées-aux-technologies)
+  - [Liste de ressources supplémentaires](#liste-de-ressources-supplémentaires)
+  - [Credits](#credits)
 
 ---
 
