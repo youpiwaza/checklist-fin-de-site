@@ -20,7 +20,7 @@
       1. & création compte & installation clé API
    3. `Converter for Media`
       1. Affiche les images en webp *sans niquer tout le dossier médias*
-   4. Optimisation de la base de données (je sais plus x_x)
+   4. Optimisation de la base de données `WP-Optimize`
    5. Sécurité `WordFence`
       1. Scan & appliquer recos
    6. `Reduce Unused CSS Solution with Critical CSS For WP`
