@@ -1,5 +1,32 @@
 # WordPress
 
+## 🔌 Plugins recommandés, simplement
+
+1. 💾 `All in one wp migration`
+   1. *~One clic savegarde & restauration*
+   2. Particulièrement efficace pour la base de données
+2. 🔒️ `Akismet anti spam`
+   1. *Eviter le gros des spams de commentaires & mails*
+   2. 🔧 & création compte & installation clé API
+3. ⚡️ `Converter for Media`
+   1. *Affiche les images en webp, sans niquer tout le dossier médias*
+4. ⚡️💄 `Reduce Unused CSS Solution with Critical CSS For WP`
+   1. *Met en place du critical css de manière automatique*
+   2. 🚨 mais peut faire sauter
+5. 🔒️ `WordFence`
+   1. *Sécurité*
+   2. 🔧🛡️🔥 Configurer firewall
+   3. 🔧📡 Scan & appliquer recos
+6. 🧹 `WP-Optimize`
+   1. *Optimisation de la base de données*, entre autre (virer transients, etc.)
+7. ⚡️ More speed ~~more dakka~~
+   1. `WP Fastest Cache`
+      1. Plugin de cache complet
+   2. `Hummingbird – Optimize Speed, Enable Cache, Minify CSS & Defer Critical JS`
+      1. Différer chargement ressources
+      2. 🚨 mais peut faire sauter
+8. 🤖 sitemap.xml automatique
+
 ## Checklist
 
 1. 💬 Informations du site posées
@@ -14,36 +41,22 @@
    1. Defer JS
    2. Pré-charger polices gougeul
       1. CSS > font-display > maj url google font dans theme &display=swap
-4. 🔌 Plugins usuels
-   1. sitemap.xml automatique
-   2. `Akismet anti spam`
-      1. & création compte & installation clé API
-   3. `Converter for Media`
-      1. Affiche les images en webp *sans niquer tout le dossier médias*
-   4. Optimisation de la base de données `WP-Optimize`
-   5. Sécurité `WordFence`
-      1. Scan & appliquer recos
-   6. `Reduce Unused CSS Solution with Critical CSS For WP`
-      1. Met en place du critical css de manière automatique
-      2. 🚨 mais peut faire sauter
-   7. `Hummingbird – Optimize Speed, Enable Cache, Minify CSS & Defer Critical JS`
-      1. Différer chargement ressources
-5. Passer les mise à jour en automatique, mineures uniquement
-6. 🔥🔌 Supprimer les plugins inutiles
-7. 🔥 Supprimer les thèmes inutiles
-8. Vérifier les menus
-9. 👨‍⚕️ Santé du site
-10. Vérifier API REST `/wp-json`
+4. Passer les mise à jour en automatique, mineures uniquement
+5. 🔥🔌 Supprimer les plugins inutiles
+6. 🔥 Supprimer les thèmes inutiles
+7. Vérifier les menus
+8. 👨‍⚕️ Santé du site
+9. Vérifier API REST `/wp-json`
     1. Si KO vérifier compatibilité plugins
-11. ⚡️🔌 Plugin de cache ~`WP Fastest Cache`
+10. ⚡️🔌 Plugin de cache ~`WP Fastest Cache`
       1. 🚨 Je ne recommande pas W3 Total Cache, souvent des trucs sautent
-12. ♻️ Penser à vider le cache à chaque modif
+11. ♻️ Penser à vider le cache à chaque modif
     1. Vérifier la console
     2. Un petit coup de pagespeed insight ne fait pas de mal non plus
-13. Vérifier le `.htaccess`
+12. Vérifier le `.htaccess`
     1. Après mise à jour des permaliens
     2. Après installation d'un plugin de cache
-14. 💾 Sauvegarde du site / export aucazou
+13. 💾 Sauvegarde du site / export aucazou
     1. Noter la version du site
     2. Copie des fichiers racine & `wp-content/`
     3. Export de la base de données ~blog masamune > Bonne pratiques pour la gestion de la base de données #export
