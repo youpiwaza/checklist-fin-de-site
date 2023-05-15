@@ -20,6 +20,7 @@ Il n'y aura pas forcément l'ensemble des liens, il s'agit plutôt d'une descrip
     - [Créer un README.md propre](#créer-un-readmemd-propre)
     - [Communauté](#communauté)
   - [Optimisations du code](#optimisations-du-code)
+    - [Robots.txt reco pour WordPress](#robotstxt-reco-pour-wordpress)
   - [Optimisations du projet](#optimisations-du-projet)
     - [Images \& vidéos](#images--vidéos)
   - [Validateurs +- en ligne](#validateurs---en-ligne)
@@ -115,6 +116,26 @@ Cela permet de faire des démonstrations en live, notamment pour :
    2. Apparence entre les breakpoints
    3. Comportements
 
+### Robots.txt reco pour WordPress
+
+À partir des ~5 articles populaires en 2023
+
+```txt
+User-agent: *
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-admin/
+Disallow: /wp-content/uploads/wpo-plugins-tables-list.json
+Disallow: /wp-login.php
+Disallow: /wp-includes/
+Disallow: /readme.html
+Disallow: /refer/
+Disallow: /?s=/
+Disallow: /search/
+
+Sitemap: https://blog-new.masamune.fr/sitemap.xml
+Sitemap: https://blog-new.masamune.fr/sitemap.rss
+```
+
 ---
 
 ## Optimisations du projet
@@ -125,7 +146,7 @@ Cela permet de faire des démonstrations en live, notamment pour :
    1. Correcteur orthographe
    2. Balises title pour chaque page
    3. Page Plan du site
-   4. Vérifier l'absence de liens morts
+   4. [Vérifier l'absence de liens morts](https://www.deadlinkchecker.com/website-dead-link-checker.asp)
    5. Vérifier les liens vers l'extérieur
       1. la pertinence
       2. ~`nofollow`
@@ -168,20 +189,21 @@ Cela permet de faire des démonstrations en live, notamment pour :
 1. [Google pagespeed insights](https://pagespeed.web.dev/)
    1. Extrèmement complet
    2. Et puis bah appliquer l'ensemble des recommandations autant que possible, la doc est vraiment bien
-2. Standards HTML > [W3C validator](https://validator.w3.org/)
-3. Sécurité
+2. [Scan Problèmes, SEO, 100k trucs](https://geekflare.com/tools/toolbox)
+3. Standards HTML > [W3C validator](https://validator.w3.org/)
+4. Sécurité
    1. [Security headers](https://securityheaders.com/)
-4. SEO
-   1. [Domsignal](https://domsignal.com/website-audit)
-   2. ~google crawler / [totheweb > search engine simulator](https://totheweb.com/learning_center/tools-search-engine-simulator/)
+5. SEO
+   1. ~google crawler / [totheweb > search engine simulator](https://totheweb.com/learning_center/tools-search-engine-simulator/)
       1. Fait ressortir les mots clés, recos d'utilisation de balises
-5. Accéssibilité (tags dédiés, contrastes, etc.)
+6. Accéssibilité (tags dédiés, contrastes, etc.)
    1. [AccessiBe > Scan](https://accessibe.com/accessscan)
-6. Responsive
+7. Responsive
    1. Inspecteur du navigateur lel
    2. avec inscription : [Lambda test](https://www.lambdatest.com/)
-7. Ecologie (.. ui ui)
+8. Ecologie (.. ui ui)
    1. Empreinte carbone de ton site [websitecarbon.com](https://www.websitecarbon.com/)
+9. Validateur de robots.txt autre que google console [websiteplanet](https://www.websiteplanet.com/fr/webtools/robots-txt/)
 
 ---
 
@@ -195,10 +217,21 @@ Cela permet de faire des démonstrations en live, notamment pour :
 5. Gestion des emails
    1. Vérification que le serveur n'est pas en spam
    2. Création de templates pour les emails sortants
-   3. SPF
-   4. DKIM
-   5. DMARC
-   6. [Liste de liens > Emails](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=222850098)
+   3. Sécurité / Spam
+      1. 📝 Possibilité d'ajouter ces entrées dans les DNS d'ovh maintenant
+      2. SPF
+         1. 📝 [Doc](https://dmarcadvisor.com/fr/creer-un-enregistrement-spf/)
+         2. ~~`blog IN TXT "v=spf1 a mx ip4:169.169.169.169 ip6:2001:169:169::169 -all"`~~
+            1. sous domaine, autoriser ip associée au domaine + spécifier ip en dur & empécher tout le reste
+         3. Reco OVH  si utilisation de leur mailing `"v=spf1 include:mx.ovh.com ~all"`
+         4. [Test](https://dmarcadvisor.com/fr/spf-check/)
+      3. DKIM
+         1. Pas possible sur heberg mutualisé
+      4. DMARC
+         1. 📝 [Doc](https://dmarcadvisor.com/fr/qu-est-ce-que-dmarc/)
+         2. [Générateur](https://dmarcadvisor.com/dmarc-generator/)
+      5. OVH Manager > hébergement > scripts emails > destinataire
+   4. [Liste de liens > Emails](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=222850098)
 6. Gestions des principaux code d'erreurs de manière propre
    1. 500 / kaput
    2. ??? / Trop de monde
@@ -239,6 +272,7 @@ Pour aller plus loin, may faut lire & testay
 7. [UT / Unit Testing](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=899132401)
 8. Documentation ~automatique : [storybook](https://storybook.js.org/)
 9. [Liste de liengs > Optimisation du Responsive](https://docs.google.com/spreadsheets/d/1COXPrsJgAJyfXOT7aNZULCDMOYhctlzI5kXOxw7vE64/edit#gid=1584040677)
+10. Ai1SEO > [Article guide ref nat 2023](https://aioseo.com/ultimate-wordpress-seo-guide/)
 
 ---
 
