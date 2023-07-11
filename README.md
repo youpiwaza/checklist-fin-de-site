@@ -21,6 +21,9 @@ Il n'y aura pas forcément l'ensemble des liens, il s'agit plutôt d'une descrip
     - [Communauté](#communauté)
   - [Optimisations du code](#optimisations-du-code)
     - [Robots.txt reco pour WordPress](#robotstxt-reco-pour-wordpress)
+    - [Fichier .htaccess à la racine](#fichier-htaccess-à-la-racine)
+    - [Redirections 301](#redirections-301)
+    - [Autres joyeusestés](#autres-joyeusestés)
   - [Optimisations du projet](#optimisations-du-projet)
     - [Images \& vidéos](#images--vidéos)
   - [Validateurs +- en ligne](#validateurs---en-ligne)
@@ -138,6 +141,58 @@ Sitemap: https://blog-new.masamune.fr/sitemap.rss
 
 ---
 
+### Fichier .htaccess à la racine
+
+💩💥 À tendance à très vite tout faire sauter, erreur 500
+
+- Peut dépendre de l'hébergement > Ne pas hésiter à checker les logs du logiciel (apache / nginx / lightspeed, etc.)
+- Tester ligne par ligne
+  - Désactiver le cache serveur (OVH > PHP > "developpement" et non "production")
+  - Vider le cache navigateur
+  - Désactiver les caches CMS (WordPress > plugins W3 Total Cache / fastest cache / hummingbird / etc. )
+
+Virer découverte de l'arborescence, si WordPress protéger fichier `wp-config.php`
+
+```ini
+### Recos OVH
+#       https://help.ovhcloud.com/csm/fr-web-hosting-htaccess-wordpress?id=kb_article_view&sysparm_article=KB0056291
+
+# Empêcher l'affichage des répertoires et sous-répertoires
+Options All -Indexes
+
+# Protéger votre fichier de configuration
+<Files wp-config.php>
+    order allow,deny
+    deny from all
+</Files>
+```
+
+### Redirections 301
+
+Si bascule depuis un ancien site et changement d'urls, afin de maintenir le référencement naturel
+
+```ini
+## Liens spécifiques : une page
+#            ancien        nouveau
+Redirect 301 /ancien-lien/ /nouveau-lien/
+
+## Généré auto, utiliser des regexp
+# ancien          "/category/ANCIEN/whatever"       nouveau "/categorie/NOUVEAU/whatever"
+RedirectMatch 301 ^/category/ANCIEN(.+?)(-[0-9]+)?$ /categorie/NOUVEAU$1
+```
+
+📌 Vérification via Google Search console > forcer les crawlers
+
+---
+
+### Autres joyeusestés
+
+Si cela n'est pas géré par un CMS, penser à gérer
+
+- L'expiration fixée des types de documents ~`mod_expires.c`
+- Le craft / la redirection d'url ~`mod_rewrite.c`
+- Le cache ~zip des ressources ~`mod_deflate.c`
+
 ## Optimisations du projet
 
 1. Virer les fichiers inutilisés
@@ -205,6 +260,8 @@ Sitemap: https://blog-new.masamune.fr/sitemap.rss
    1. Empreinte carbone de ton site [websitecarbon.com](https://www.websitecarbon.com/)
 9. Validateur de robots.txt autre que google console [websiteplanet](https://www.websiteplanet.com/fr/webtools/robots-txt/)
 
+🚨📌 Une fois le site en place avec le ref. nat. (plan du site, sitemap.xml) > Relancer crawling de google search console
+
 ---
 
 ## Optimisations côté serveur
@@ -263,6 +320,8 @@ Pour aller plus loin, may faut lire & testay
 2. Accessibilité
    1. [dev.to > Web Accessibility: By making your website accessible, you automatically increase the target audience](https://dev.to/karkranikhil/web-accessibility-by-making-your-site-accessible-you-automatically-increase-the-target-audience-d8d)
 3. SEO
+   1. Google analytics
+   2. Google search console
 4. Sécurité
    1. Principales failles expliquées / [hacksplaining](https://www.hacksplaining.com/lessons)
 5. Optimisation / speed

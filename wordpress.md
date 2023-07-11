@@ -2,45 +2,61 @@
 
 ## 🔌 Plugins recommandés, simplement
 
-1. 💾 `All in one wp migration`
-   1. *~One clic savegarde & restauration*
-   2. Particulièrement efficace pour la base de données
-2. 🔒️ `Akismet anti spam`
+1. 🔒️ `Akismet anti spam` Par Automattic - Anti Spam Team
    1. *Eviter le gros des spams de commentaires & mails*
    2. 🔧 & création compte & installation clé API
-3. ⚡️ `Converter for Media` Par matt plugins
+2. `All in One SEO Pack` Par L’équipe All in One SEO
+3. 💾 `All in one wp migration` Par ServMask
+   1. *~One clic savegarde & restauration*
+   2. Particulièrement efficace pour la base de données
+   3. Vérifier que les plans de sites sont activés
+4. `Complianz – GDPR/CCPA Cookie Consent`
+   1. *Analyse automatique des cookies & génération RGPD, par pays*
+5. ⚡️ `Converter for Media` Par matt plugins
    1. *Affiche les images en webp, sans niquer tout le dossier médias*
-4. ⚡️💄 `Reduce Unused CSS Solution with Critical CSS For WP`
+6. `MonsterInsights – Google Analytics Dashboard for WordPress (Website Stats Made Easy)` Par MonsterInsights
+   1. *Connexion à google analytics et quelques autres améliorations SEO*
+7. ⚡️💄 `Reduce Unused CSS Solution with Critical CSS For WP` Par Magazine3
    1. *Met en place du critical css de manière automatique*
    2. 🚨 mais peut faire sauter
-5. 🔒️ `WordFence`
+   3. 👷 Vider le cache si plugin déjà en place avant de tester
+8. `Simple Sitemap` Par David Gwyer
+   1. *Sitemap HTML généré automatiquement via shortcodes, possibilité de configuration*
+9. 🔒️ `WordFence`
    1. *Sécurité*
-   2. 🔧🛡️🔥 Configurer firewall
+   2. 🔧🛡️🔥 Configurer firewall > All Firewall Options
+      1. Allowed IP > Ajouter la sienne, au cazou
+      2. Immediately block the IP of users who try to sign in as these usernames > "admin"
    3. 🔧📡 Scan & appliquer recos
-6. 🧹 `WP-Optimize` Par David Anderson, Ruhani Rabin, Team Updraft
-   1. *Optimisation de la base de données*, entre autre (virer transients, etc.)
-7. ⚡️ More speed ~~more dakka~~
-   1. `WP Fastest Cache`
-      1. Plugin de cache complet
-      2. Forcer la mise en cache après activation `your-site.com/?action=wpfastestcache&type=preload`
-   2. ~~`Hummingbird – Optimize Speed, Enable Cache, Minify CSS & Defer Critical JS`~~
-      1. Différer chargement ressources
-      2. 🚨 mais peut faire sauter
-   3. ~~`LiteSpeed Cache`~~
-      1. Manque des trucs (headers, etc.)
-8. 🔒️ `WPS Hide Login`, par Par WPServeur, NicolasKulka, wpformation
-   1. *Sécurité* / Changer l'url de login
-9. 🤖 sitemap.xml automatique
+   4. 🔧🔒️ Login page > enable recaptcha
+10. 🧹 `WP-Optimize` Par David Anderson, Ruhani Rabin, Team Updraft
+    1. *Optimisation de la base de données*, entre autre (virer transients, etc.)
+11. ⚡️ More speed ~~more dakka~~
+    1. `WP Fastest Cache`
+       1. Plugin de cache complet
+       2. ⚡️⚡️⚡️ Forcer la mise en cache après activation `your-site.com/?action=wpfastestcache&type=preload`
+    2. ~~`Hummingbird – Optimize Speed, Enable Cache, Minify CSS & Defer Critical JS`~~
+       1. Différer chargement ressources
+       2. 🚨 mais peut faire sauter
+    3. ~~`LiteSpeed Cache`~~
+       1. Manque des trucs (headers, etc.)
+12. 🔒️ `WPS Hide Login`, par Par WPServeur, NicolasKulka, wpformation
+    1. *Sécurité* / Changer l'url de login
+    2. WordFence > Firewall > All Firewall Options > Immediately block IPs that access these URLs > `/wp-login.php`
+13. 🤖 sitemap.xml automatique
+14. 🔒️ En fin d'installations, aller sur la page des extensions et activer l'auto-update
+15. En fin d'installations, lancier Complianz, que les cookies des plugins soient en place
 
 ## Checklist
 
 1. Si hebergement ovh > [config .htaccess](https://help.ovhcloud.com/csm/fr-web-hosting-htaccess-wordpress?id=kb_article_view&sysparm_article=KB0056291)
 2. 💬 Informations du site posées via l'administration WordPress
    1. Réglages > Général
-   2. Apparence > Logo
-   3. Thème > Favicon
-   4. Médias > Tailles fixées
-   5. 🚨 Même si cela n'apparaît pas explicitement sur le site souvent ça ressort dans les moteurs de recherche
+   2. Apparence > Personnaliser > Paramètres généraux > Identité du site > Logo
+   3. Admin > Divi > Options du thème > Général > Logo
+   4. Thème > Favicon
+   5. Admin > Réglages > Médias > Tailles fixées
+   6. 🚨 Même si cela n'apparaît pas explicitement sur le site souvent ça ressort dans les moteurs de recherche
 3. 🖼️ Médias
    1. Ajout des title
    2. Ajout des alt
@@ -52,28 +68,16 @@
 6. 🔥🔌 Supprimer les plugins inutiles
 7. 🔥 Supprimer les thèmes inutiles
 8. Vérifier les menus
-9. 👨‍⚕️ Santé du site
+9. 👨‍⚕️ Admin > Outils > Santé du site
    1. 🚨 Laisser tourner, l'analyse n'est pas instantanée
 10. Vérifier API REST `/wp-json`
     1. Si KO vérifier compatibilité plugins
-11. ⚡️🔌 Plugin de cache ~`WP Fastest Cache`
-12. ♻️ Penser à vider le cache à chaque modif
-    1. Vérifier la console
-    2. Un petit coup de pagespeed insight ne fait pas de mal non plus
-13. Vérifier le `.htaccess`
+11. Vérifier le `.htaccess`
     1. Après mise à jour des permaliens
     2. Après installation d'un plugin de cache
-14. 🧹 Ti coup de WP-Optimize avant sauvegarde
+    3. 💾 Backup local
+12. 🧹 Ti coup de WP-Optimize avant sauvegarde
     1. D'abord virer les tables inutiles (2eme onglet) avant d'optimiser
-15. 💾 Sauvegarde du site / export aucazou
-    1. Noter la version du site
-    2. Copie des fichiers racine & `wp-content/`
-    3. Export de la base de données ~blog masamune > Bonne pratiques pour la gestion de la base de données #export
-    4. Plugin All in one wp migration
-       1. Export BDD uniquement, permet de réimporter par fichier si poids pas lourd
-    5. 🔥 Supprimer plugin
-       1. Noter version du plugin lors de l'export
-       2. On le ré-installe au besoin
 
 ## Bonnes pratiques
 
@@ -86,15 +90,166 @@
          2. Comprenant **certains** caractères spéciaux `! ? % ^ & ) /`
          3. 💥 Mais surtout pas `$ ' "`
       3. Mettre à jour nom d'affichage
-3. 🔒️ Sécurité
-   1. plugins 'tout en un'
-   2. firewall
-   3. anti brute force
-   4. Changer l'url de connexion avec plugin `WPS Hide Login`
-      1. Plus de `wp-admin/`
-      2. Plus de `wp-login.php`
-      3. Ajouter règle wordpress ban ip automatique si ça tape sur l'une de ces deux urls
-4. WP-CLI
+3. WP-CLI
+
+### Robots.txt reco pour WordPress
+
+À partir des ~5 articles populaires en 2023
+
+Possibilité de passer par le plugin all in one seo > outils > editeur robots.txt
+
+```txt
+User-agent: *
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-admin/
+Disallow: /wp-content/uploads/wpo-plugins-tables-list.json
+Disallow: /wp-login.php
+Disallow: /wp-includes/
+Disallow: /readme.html
+Disallow: /refer/
+Disallow: /*/?s=*
+Disallow: /search/
+Disallow: /*/?query*
+Disallow: /*/?cst*
+Disallow: /author/
+
+Sitemap: https://masamune.fr/sitemap.xml
+Sitemap: https://masamune.fr/sitemap.rss
+```
+
+---
+
+## Thème Divi
+
+Faire un thème enfant afin de corriger certains trucs, notemment en surchargeant `functions.php`
+
+```php
+// ! Thème enfant Divi > functions.php
+// * 🔌 Charger un fichier javascript personnalisé
+add_action( 'wp_enqueue_scripts', 'my_custom_script_load' );
+function my_custom_script_load(){
+    wp_enqueue_script( 'my-custom-script', get_stylesheet_directory_uri() . '/max.js' );
+}
+
+
+
+// * 🔌 Charger le script de google recaptcha de manière propre
+add_action( 'wp_enqueue_scripts', 'script_load_google_recaptcha' );
+function script_load_google_recaptcha() {
+    wp_enqueue_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js');
+}
+
+
+
+<?php
+// * Changer les url des projets et catégories projets avec divi
+//          `masamune.fr/project/bp-projet/` > `masamune.fr/projet/bp-projet/`
+function et_projects_custom_slug( $slug ) {
+    $slug = array( 'slug' => 'projet' );
+    return $slug;
+}
+add_filter( 'et_project_posttype_rewrite_args', 'et_projects_custom_slug', 10, 2 );
+
+//          `masamune.fr/category_project/bp-projet/` > `masamune.fr/categorie-projet/bp-projet/`
+add_filter( 'register_taxonomy_args', 'change_taxonomies_slug', 10, 2 );
+function change_taxonomies_slug( $args, $taxonomy ) {
+    if ( 'project_category' === $taxonomy ) {
+        $args['rewrite']['slug'] = 'categorie-projet';
+    }
+    return $args;
+}
+
+
+
+// * ⚡️ Virer la barre d'admin du haut pour l'ensemble des utilisateurs
+add_filter( 'show_admin_bar', '__return_false' );
+
+
+
+// * ⚡️ Désactiver heartbeat
+add_action( 'init', 'stop_heartbeat', 1 );
+function stop_heartbeat() {
+    wp_deregister_script('heartbeat');
+}
+
+
+
+// ! Pagespeed insights
+//      L'attribut [user-scalable="no"] est utilisé dans l'élément <meta name="viewport">, ou l'attribut [maximum-scale] est inférieur à 5.
+//      @see    https://help.elegantthemes.com/en/articles/2190905-how-to-enable-pinch-to-zoom-on-mobile
+function remove_my_action() {
+    remove_action('wp_head', 'et_add_viewport_meta');
+}
+
+function custom_et_add_viewport_meta(){
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=6.0, user-scalable=1" />';
+}
+
+add_action( 'init', 'remove_my_action');
+add_action( 'wp_head', 'custom_et_add_viewport_meta' );
+?>
+```
+
+### Utilisation de la galerie > ajout de l'accessibilité
+
+Charger un fichier js depuis le thème enfant, `functions.php`
+
+```php
+<?php
+// * 🔌 Charger un fichier javascript personnalisé
+add_action( 'wp_enqueue_scripts', 'my_custom_script_load' );
+function my_custom_script_load(){
+    wp_enqueue_script( 'my-custom-script', get_stylesheet_directory_uri() . '/max.js' );
+}
+?>
+```
+
+Ajout en javascript dynamique
+
+```js
+// * Gallery accessibility > Adding Aria labels
+//      @see        https://dequeuniversity.com/rules/axe/4.7/link-name
+//      @see        https://divi.help/threads/adding-accessibility-attributes-to-slider.2990/
+function onLoad(){
+    const previousLabel = "Précédent";
+    const nextLabel     = "Suivant";
+    
+    // Get the elements
+    let arrowsPrev = document.getElementsByClassName('et-pb-arrow-prev');
+    let arrowsNext = document.getElementsByClassName('et-pb-arrow-next');
+    // console.log(arrowsPrev);
+
+    // Set the aria-label attributes
+    for (let arrowPrev of arrowsPrev) {
+        arrowPrev.setAttribute('aria-label', previousLabel);
+    }
+    for (let arrowNext of arrowsNext) {
+        arrowNext.setAttribute('aria-label', nextLabel);
+    }
+}
+
+window.addEventListener("load", onLoad);
+```
+
+---
+
+### 💾 Sauvegarde du site / export aucazou
+
+1. Noter la version du site
+2. Copie des fichiers racine & `wp-content/`
+   1. Virtuellement pas besoin de `wp-admin/` ni `wp-includes/`, préférer installation propre
+   2. Préférer récupérer manuellement les dossiers à l'intérieur de `wp-content/`
+      1. Exclure cache, logs, upgrade, etc.
+      2. Récupérer principalement `themes/`, `plugins/`, `uploads/`
+3. Export de la base de données [~blog masamune > Bonne pratiques pour la gestion de la base de données #export](https://blog.masamune.fr/dev-et-prog/bonne-pratiques-gestion-base-de-donnees/)
+4. Plugin All in one wp migration
+   1. Export BDD uniquement, permet de réimporter par fichier si poids pas lourd
+5. 🔥 Supprimer plugin
+   1. Noter version du plugin lors de l'export
+   2. On le ré-installe au besoin
+6. Si sauvegarde sur github, utiliser un `.gitignore` [adapté](https://github.com/youpiwaza/base-repository-github/blob/main/.gitignore)
+
+---
 
 ### 🧹 Maintenance, à minima ♻️ tous les 6 mois
 
