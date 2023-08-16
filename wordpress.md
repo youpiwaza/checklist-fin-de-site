@@ -136,9 +136,9 @@ Chargement des polices Google web fonts en self host
 
 ---
 
-### JS en général
+### Optimisations Scripts JS et autres joyeusetés en général
 
-Surcharger Thème enfant Divi > `functions.php`
+Surcharger Thème enfant Divi > `functions.php`, & ajout d'un script js custom
 
 ```php
 <?php
@@ -256,19 +256,7 @@ add_action( 'wp_head', 'custom_et_add_viewport_meta' );
 
 ---
 
-### Utilisation de la galerie > ajout de l'accessibilité
-
-Charger un fichier js depuis le thème enfant, `functions.php`
-
-```php
-<?php
-// * 🔌 Charger un fichier javascript personnalisé
-add_action( 'wp_enqueue_scripts', 'my_custom_script_load' );
-function my_custom_script_load(){
-    wp_enqueue_script( 'my-custom-script', get_stylesheet_directory_uri() . '/max.js' );
-}
-?>
-```
+### Script js custom
 
 Ajout en javascript dynamique
 
@@ -276,9 +264,12 @@ Ajout en javascript dynamique
 // * Gallery accessibility > Adding Aria labels
 //      @see        https://dequeuniversity.com/rules/axe/4.7/link-name
 //      @see        https://divi.help/threads/adding-accessibility-attributes-to-slider.2990/
+
+//* Google Tag Manager / Google Analytics
+//      @see        https://tagmanager.google.com/
 function onLoad(){
-    const previousLabel = "Précédent";
-    const nextLabel     = "Suivant";
+    let previousLabel = "Précédent";
+    let nextLabel     = "Suivant";
     
     // Get the elements
     let arrowsPrev = document.getElementsByClassName('et-pb-arrow-prev');
@@ -292,9 +283,65 @@ function onLoad(){
     for (let arrowNext of arrowsNext) {
         arrowNext.setAttribute('aria-label', nextLabel);
     }
+
+    // Google Tag Manager / Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    gtag('js', new Date());
+    gtag('config', 'G-WHMGE3VGT1');
 }
 
 window.addEventListener("load", onLoad);
+
+// Google Tag Manager / Google Analytics
+function gtag(){
+    dataLayer.push(arguments);
+}
+
+
+
+// * Pagespeed > Passive event listeners
+//      @see    https://stackoverflow.com/a/45974787
+//      ⬆️ Replaced var with let
+(function() {
+    let supportsPassive = eventListenerOptionsSupported();  
+    
+    if (supportsPassive) {
+        let addEvent = EventTarget.prototype.addEventListener;
+        overwriteAddEvent(addEvent);
+    }
+    
+    function overwriteAddEvent(superMethod) {
+        let defaultOptions = {
+            passive: true,
+            capture: false
+        };
+        
+        EventTarget.prototype.addEventListener = function(type, listener, options) {
+            let usesListenerOptions = typeof options === 'object';
+            let useCapture = usesListenerOptions ? options.capture : options;
+            
+            options = usesListenerOptions ? options : {};
+            options.passive = options.passive !== undefined ? options.passive : defaultOptions.passive;
+            options.capture = useCapture !== undefined ? useCapture : defaultOptions.capture;
+            
+            superMethod.call(this, type, listener, options);
+        };
+    }
+    
+    function eventListenerOptionsSupported() {
+        let supported = false;
+        try {
+            let opts = Object.defineProperty({}, 'passive', {
+                get: function() {
+                    supported = true;
+                }
+            });
+            window.addEventListener("test", null, opts);
+        } catch (e) {}
+        
+        return supported;
+    }
+})();
 ```
 
 ---
