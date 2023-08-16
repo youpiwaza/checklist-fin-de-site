@@ -119,16 +119,72 @@ Sitemap: https://masamune.fr/sitemap.rss
 
 ---
 
-## Thème Divi
+## Thème Divi / Thème Enfant
 
-Faire un thème enfant afin de corriger certains trucs, notemment en surchargeant `functions.php`
+Faire un thème enfant afin de corriger certains trucs.
+
+### Styles & Google web fonts
+
+Chargement des polices Google web fonts en self host
+
+1. Inspecter la vitrine du site afin d'identifier les polices utilisées, ainsi que leurs **poids** `font-weight`
+2. Se servir du [Helper heroku](https://gwfh.mranftl.com/fonts)
+   1. Télécharger les fichiers de polices
+   2. Les ajouter au dossier du thème enfant (et upload)
+   3. Ajuster le code fourni vers chemin vers les ressources (inclus dans le helper)
+   4. Ajouter au style.css
+
+---
+
+### JS en général
+
+Surcharger Thème enfant Divi > `functions.php`
 
 ```php
-// ! Thème enfant Divi > functions.php
-// * 🔌 Charger un fichier javascript personnalisé
-add_action( 'wp_enqueue_scripts', 'my_custom_script_load' );
-function my_custom_script_load(){
-    wp_enqueue_script( 'my-custom-script', get_stylesheet_directory_uri() . '/max.js' );
+<?php
+// * ⚡️🔌 Optimisation des chargements des scripts, avec async/defer
+//          L'attribut defer va permettre d'exécuter les scripts dans l'ordre donné
+//              dès la fin du chargement de la page
+//          au contraire de async qui va exécuter les scripts dès que ceux-ci sont prêts
+//  @see    https://thibautsoufflet.fr/blog/ajouter-les-attributs-defer-et-async-aux-scripts-wordpress/
+//              Edit : 🔧 script corrigé
+
+// * Add async
+function add_async_attribute($tag, $handle) {
+    // @use : Ajouter le nom du script ici
+    $scripts_names = [];
+    
+    if ( !in_array($handle, $scripts_names) )
+    return $tag;
+
+    return str_replace( ' src', ' async src', $tag );
+}
+add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+
+
+
+// * Add defer
+function add_defer_attribute($tag, $handle) {
+    // @use : Ajouter le nom du script ici
+    $scripts_names = ['gtag-script-load', 'google-recaptcha', 'my_custom_script_load'];
+
+    if ( !in_array($handle, $scripts_names) )
+        return $tag;
+    
+    return str_replace( ' src', ' defer src', $tag );
+}
+add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
+
+
+
+// ---
+
+
+
+// * 🔌 Charger un Google Tag Manager / Google Analytics
+add_action( 'wp_enqueue_scripts', 'gtag_script_load' );
+function gtag_script_load(){
+    wp_enqueue_script( 'gtag-script-load', 'https://www.googletagmanager.com/gtag/js?id=G-XXX' );
 }
 
 
@@ -141,7 +197,14 @@ function script_load_google_recaptcha() {
 
 
 
-<?php
+// * 🔌 Charger un fichier javascript personnalisé
+add_action( 'wp_enqueue_scripts', 'my_custom_script_load' );
+function my_custom_script_load(){
+    wp_enqueue_script( 'my-custom-script', get_stylesheet_directory_uri() . '/max.js' );
+}
+
+
+
 // * Changer les url des projets et catégories projets avec divi
 //          `masamune.fr/project/bp-projet/` > `masamune.fr/projet/bp-projet/`
 function et_projects_custom_slug( $slug ) {
@@ -162,7 +225,7 @@ function change_taxonomies_slug( $args, $taxonomy ) {
 
 
 // * ⚡️ Virer la barre d'admin du haut pour l'ensemble des utilisateurs
-add_filter( 'show_admin_bar', '__return_false' );
+// add_filter( 'show_admin_bar', '__return_false' );
 
 
 
@@ -188,7 +251,10 @@ function custom_et_add_viewport_meta(){
 add_action( 'init', 'remove_my_action');
 add_action( 'wp_head', 'custom_et_add_viewport_meta' );
 ?>
+
 ```
+
+---
 
 ### Utilisation de la galerie > ajout de l'accessibilité
 
